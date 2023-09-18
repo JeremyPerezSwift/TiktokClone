@@ -230,6 +230,9 @@
                                 <color key="tintColor" systemColor="secondarySystemBackgroundColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Sign Up"/>
+                                <connections>
+                                    <action selector="signUpDidTapped:" destination="5iF-w4-0DP" eventType="touchUpInside" id="qgV-iV-UbD"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fNN-Yf-fO1"/>
