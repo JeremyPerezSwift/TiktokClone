@@ -8,7 +8,9 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseStorage
 import PhotosUI
+import ProgressHUD
 
 class SignUpViewController: UIViewController {
     
@@ -27,12 +29,20 @@ class SignUpViewController: UIViewController {
     
     @IBOutlet weak var signUpButton: UIButton!
     
+    var image: UIImage? = nil
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setUpView()
+        
+//        do {
+//            try Auth.auth().signOut()
+//        } catch {
+//            print("DEBUG: Error signing out")
+//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,31 +91,28 @@ class SignUpViewController: UIViewController {
     // MARK: - IBAction
     
     @IBAction func signUpDidTapped(_ sender: Any) {
-        if emailTextfield.text != "" && passwordTextfield.text != "" && usernameTextfield.text != "" {
+        if emailTextfield.text != "" && passwordTextfield.text != "" && usernameTextfield.text != "" && image != nil {
             guard let username = usernameTextfield.text else { return }
             guard let email = emailTextfield.text else { return }
             guard let password = passwordTextfield.text else { return }
+            guard let imageSelected = image else { return }
+            guard let imageData = imageSelected.jpegData(compressionQuality: 0.2) else { return }
             
-            Auth.auth().createUser(withEmail: email, password: password) { resultAuth, errorAuth in
-                if let error = errorAuth {
-                    print("DEBUG: Error \(error.localizedDescription)")
-                    return
-                } else if let authData = resultAuth {
-                    guard let emailUser = authData.user.email else { return }
-                    print("DEBUG: Result \(emailUser)")
-                    
-                    let dictionnary: Dictionary<String, Any> = ["uid": authData.user.uid, "email": emailUser, "username": username, "profileImageUrl": "", "status": ""]
-                    
-                    Database.database().reference().child("users").child(authData.user.uid).updateChildValues(dictionnary) { errorDatabase, resultDatabase in
-                        if let error = errorDatabase {
-                            print("DEBUG: Error \(error.localizedDescription)")
-                            return
-                        } else {
-                            print("DEBUG: Success")
-                        }
-                    }
-                }
+            let credentials: SignUpCredentitals = SignUpCredentitals(email: email, password: password, username: username, profileImage: imageData)
+            
+            ProgressHUD.show()
+            
+            SignUpService.shared.signup(credentials: credentials) {
+                ProgressHUD.remove()
+                ProgressHUD.showSucceed()
+                print("DEBUG: Success")
+            } onError: { errorMessage in
+                ProgressHUD.remove()
+                ProgressHUD.showError("\(errorMessage)")
             }
+
+        } else {
+            ProgressHUD.showError("Please enter informations")
         }
     }
     
@@ -121,6 +128,7 @@ extension SignUpViewController: PHPickerViewControllerDelegate {
                 if let imageSelected = image as? UIImage {
                     DispatchQueue.main.async {
                         self.avatarImg.image = imageSelected
+                        self.image = imageSelected
                     }
                 }
             }

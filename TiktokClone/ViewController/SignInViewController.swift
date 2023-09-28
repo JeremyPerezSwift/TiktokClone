@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ProgressHUD
 
 class SignInViewController: UIViewController {
     
@@ -43,6 +44,27 @@ class SignInViewController: UIViewController {
     func setupTextfields() {
         setupTextfield(container: emailContainerView, textfield: emailTextfield)
         setupTextfield(container: passwordContainerView, textfield: passwordTextfield)
+    }
+    
+    @IBAction func signInDidTapped(_ sender: Any) {
+        ProgressHUD.show()
+        
+        if emailTextfield.text != "" && passwordTextfield.text != "" {
+            guard let email = emailTextfield.text else { return }
+            guard let password = passwordTextfield.text else { return }
+            
+            SignInService.shared.signIn(email: email, password: password) {
+                ProgressHUD.remove()
+                ProgressHUD.showSucceed()
+            } onError: { errorMessage in
+                ProgressHUD.remove()
+                ProgressHUD.showError("\(errorMessage)")
+            }
+
+        } else {
+            ProgressHUD.remove()
+            ProgressHUD.showError("Please enter informations")
+        }
     }
     
 }

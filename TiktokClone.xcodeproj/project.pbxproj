@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29AC06E32ABED29100AFCA5E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */; };
+		29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */; };
+		29AC06E82ABEDC9400AFCA5E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E72ABEDC9400AFCA5E /* StorageService.swift */; };
 		29AC570B2AB81ABA0045D8B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC570A2AB81ABA0045D8B1 /* AppDelegate.swift */; };
 		29AC570D2AB81ABA0045D8B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC570C2AB81ABA0045D8B1 /* SceneDelegate.swift */; };
 		29AC570F2AB81ABA0045D8B1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC570E2AB81ABA0045D8B1 /* ViewController.swift */; };
@@ -24,9 +27,15 @@
 		29AC57332AB84A0F0045D8B1 /* FirebaseDatabaseSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 29AC57322AB84A0F0045D8B1 /* FirebaseDatabaseSwift */; };
 		29AC57352AB84A0F0045D8B1 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 29AC57342AB84A0F0045D8B1 /* FirebaseMessaging */; };
 		29AC57372AB84A0F0045D8B1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 29AC57362AB84A0F0045D8B1 /* FirebaseStorage */; };
+		29AC573A2AB8887D0045D8B1 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 29AC57392AB8887D0045D8B1 /* ProgressHUD */; };
+		29BFB6AC2AC5483C000262AD /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6AB2AC5483C000262AD /* SignInService.swift */; };
+		29E280972AC4086A00738068 /* References.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E280962AC4086A00738068 /* References.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
+		29AC06E72ABEDC9400AFCA5E /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		29AC57072AB81ABA0045D8B1 /* TiktokClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TiktokClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29AC570A2AB81ABA0045D8B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		29AC570C2AB81ABA0045D8B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +48,8 @@
 		29AC57232AB8379C0045D8B1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		29AC57252AB83DE30045D8B1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		29AC57272AB848320045D8B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		29BFB6AB2AC5483C000262AD /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
+		29E280962AC4086A00738068 /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				29AC57352AB84A0F0045D8B1 /* FirebaseMessaging in Frameworks */,
+				29AC573A2AB8887D0045D8B1 /* ProgressHUD in Frameworks */,
 				29AC57332AB84A0F0045D8B1 /* FirebaseDatabaseSwift in Frameworks */,
 				29AC572D2AB84A0F0045D8B1 /* FirebaseAnalyticsSwift in Frameworks */,
 				29AC572F2AB84A0F0045D8B1 /* FirebaseAuth in Frameworks */,
@@ -59,6 +71,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29AC06E12ABED26C00AFCA5E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		29AC06E42ABEDBAA00AFCA5E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */,
+				29BFB6AB2AC5483C000262AD /* SignInService.swift */,
+				29AC06E72ABEDC9400AFCA5E /* StorageService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		29AC56FE2AB81ABA0045D8B1 = {
 			isa = PBXGroup;
 			children = (
@@ -78,8 +108,10 @@
 		29AC57092AB81ABA0045D8B1 /* TiktokClone */ = {
 			isa = PBXGroup;
 			children = (
+				29AC06E12ABED26C00AFCA5E /* ViewModel */,
 				29AC57202AB837680045D8B1 /* View */,
 				29AC57212AB8376E0045D8B1 /* ViewController */,
+				29AC06E42ABEDBAA00AFCA5E /* API */,
 				29AC57222AB837810045D8B1 /* Utils */,
 				29AC570A2AB81ABA0045D8B1 /* AppDelegate.swift */,
 				29AC570C2AB81ABA0045D8B1 /* SceneDelegate.swift */,
@@ -113,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				29AC57232AB8379C0045D8B1 /* Extensions.swift */,
+				29E280962AC4086A00738068 /* References.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -141,6 +174,7 @@
 				29AC57322AB84A0F0045D8B1 /* FirebaseDatabaseSwift */,
 				29AC57342AB84A0F0045D8B1 /* FirebaseMessaging */,
 				29AC57362AB84A0F0045D8B1 /* FirebaseStorage */,
+				29AC57392AB8887D0045D8B1 /* ProgressHUD */,
 			);
 			productName = TiktokClone;
 			productReference = 29AC57072AB81ABA0045D8B1 /* TiktokClone.app */;
@@ -172,6 +206,7 @@
 			mainGroup = 29AC56FE2AB81ABA0045D8B1;
 			packageReferences = (
 				29AC57292AB84A0E0045D8B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				29AC57382AB8887D0045D8B1 /* XCRemoteSwiftPackageReference "ProgressHUD" */,
 			);
 			productRefGroup = 29AC57082AB81ABA0045D8B1 /* Products */;
 			projectDirPath = "";
@@ -201,12 +236,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				29BFB6AC2AC5483C000262AD /* SignInService.swift in Sources */,
 				29AC57242AB8379C0045D8B1 /* Extensions.swift in Sources */,
 				29AC570F2AB81ABA0045D8B1 /* ViewController.swift in Sources */,
 				29AC57262AB83DE30045D8B1 /* SignInViewController.swift in Sources */,
+				29E280972AC4086A00738068 /* References.swift in Sources */,
 				29AC570B2AB81ABA0045D8B1 /* AppDelegate.swift in Sources */,
 				29AC571F2AB82A3F0045D8B1 /* SignUpViewController.swift in Sources */,
+				29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */,
 				29AC570D2AB81ABA0045D8B1 /* SceneDelegate.swift in Sources */,
+				29AC06E82ABEDC9400AFCA5E /* StorageService.swift in Sources */,
+				29AC06E32ABED29100AFCA5E /* SignUpViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -434,6 +474,14 @@
 				minimumVersion = 10.0.0;
 			};
 		};
+		29AC57382AB8887D0045D8B1 /* XCRemoteSwiftPackageReference "ProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/relatedcode/ProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -471,6 +519,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 29AC57292AB84A0E0045D8B1 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		29AC57392AB8887D0045D8B1 /* ProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 29AC57382AB8887D0045D8B1 /* XCRemoteSwiftPackageReference "ProgressHUD" */;
+			productName = ProgressHUD;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
