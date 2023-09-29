@@ -23,4 +23,22 @@ class SignInService {
         }
     }
     
+    func logOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+            print("DEBUG: Logout Error \(error.localizedDescription)")
+            return
+        }
+        
+        configureSceneDelegate()
+    }
+    
+    func configureSceneDelegate() {
+        let scene = UIApplication.shared.connectedScenes.first
+        if let sd: SceneDelegate = (scene?.delegate as? SceneDelegate) {
+            sd.configureInitialViewController()
+        }
+    }
+    
 }

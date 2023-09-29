@@ -104,8 +104,7 @@ class SignUpViewController: UIViewController {
             
             SignUpService.shared.signup(credentials: credentials) {
                 ProgressHUD.remove()
-                ProgressHUD.showSucceed()
-                print("DEBUG: Success")
+                SignInService.shared.configureSceneDelegate()
             } onError: { errorMessage in
                 ProgressHUD.remove()
                 ProgressHUD.showError("\(errorMessage)")

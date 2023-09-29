@@ -55,7 +55,7 @@ class SignInViewController: UIViewController {
             
             SignInService.shared.signIn(email: email, password: password) {
                 ProgressHUD.remove()
-                ProgressHUD.showSucceed()
+                SignInService.shared.configureSceneDelegate()
             } onError: { errorMessage in
                 ProgressHUD.remove()
                 ProgressHUD.showError("\(errorMessage)")

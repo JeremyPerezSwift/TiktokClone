@@ -29,6 +29,8 @@
 		29AC57372AB84A0F0045D8B1 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 29AC57362AB84A0F0045D8B1 /* FirebaseStorage */; };
 		29AC573A2AB8887D0045D8B1 /* ProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 29AC57392AB8887D0045D8B1 /* ProgressHUD */; };
 		29BFB6AC2AC5483C000262AD /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6AB2AC5483C000262AD /* SignInService.swift */; };
+		29BFB6AE2AC56805000262AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6AD2AC56805000262AD /* ProfileViewController.swift */; };
+		29BFB6B12AC56C93000262AD /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */; };
 		29E280972AC4086A00738068 /* References.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E280962AC4086A00738068 /* References.swift */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +51,8 @@
 		29AC57252AB83DE30045D8B1 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		29AC57272AB848320045D8B1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		29BFB6AB2AC5483C000262AD /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
+		29BFB6AD2AC56805000262AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
 		29E280962AC4086A00738068 /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -135,8 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				29AC570E2AB81ABA0045D8B1 /* ViewController.swift */,
-				29AC571E2AB82A3F0045D8B1 /* SignUpViewController.swift */,
-				29AC57252AB83DE30045D8B1 /* SignInViewController.swift */,
+				29BFB6AF2AC56C76000262AD /* Authentification */,
+				29BFB6AD2AC56805000262AD /* ProfileViewController.swift */,
+				29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -148,6 +153,15 @@
 				29E280962AC4086A00738068 /* References.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		29BFB6AF2AC56C76000262AD /* Authentification */ = {
+			isa = PBXGroup;
+			children = (
+				29AC571E2AB82A3F0045D8B1 /* SignUpViewController.swift */,
+				29AC57252AB83DE30045D8B1 /* SignInViewController.swift */,
+			);
+			path = Authentification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -237,11 +251,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				29BFB6AC2AC5483C000262AD /* SignInService.swift in Sources */,
+				29BFB6B12AC56C93000262AD /* CreatePostViewController.swift in Sources */,
 				29AC57242AB8379C0045D8B1 /* Extensions.swift in Sources */,
 				29AC570F2AB81ABA0045D8B1 /* ViewController.swift in Sources */,
 				29AC57262AB83DE30045D8B1 /* SignInViewController.swift in Sources */,
 				29E280972AC4086A00738068 /* References.swift in Sources */,
 				29AC570B2AB81ABA0045D8B1 /* AppDelegate.swift in Sources */,
+				29BFB6AE2AC56805000262AD /* ProfileViewController.swift in Sources */,
 				29AC571F2AB82A3F0045D8B1 /* SignUpViewController.swift in Sources */,
 				29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */,
 				29AC570D2AB81ABA0045D8B1 /* SceneDelegate.swift in Sources */,
