@@ -30,6 +30,9 @@ class CreatePostViewController: UIViewController {
     
     @IBOutlet weak var soundsView: UIView!
     
+    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var discardButton: UIButton!
+    
     // MARK: - Properties
     
     let photoFileOutput = AVCapturePhotoOutput()
@@ -40,6 +43,22 @@ class CreatePostViewController: UIViewController {
     var outputUrl: URL!
     var currentCameraDevice: AVCaptureDevice!
     var thumbnailImage: UIImage?
+    
+    var recordedClips = [VideoClips]()
+    var isRecording = false
+    var videoDurationOfLastClip = 0
+    var recordingTimer: Timer?
+    
+    var currentMaxRecordingDuration: Int = 15 {
+        didSet {
+            timeCounterLabel.text = "\(currentMaxRecordingDuration)s"
+        }
+    }
+    
+    var total_RecordedTime_In_Secs = 0
+    var total_RecordedTime_In_Minutes = 0
+    
+    lazy var segmentedProgressView = SegmentedProgressView(width: view.frame.width - 18)
     
     // MARK: - Lifecycle
     
@@ -83,8 +102,19 @@ class CreatePostViewController: UIViewController {
         timeCounterLabel.clipsToBounds = true
         
         soundsView.layer.cornerRadius = 12
+        saveButton.layer.cornerRadius = 12
+        saveButton.backgroundColor = UIColor(red: 254/255, green: 44/255, blue: 85/255, alpha: 1.0)
+        saveButton.alpha = 0
+        discardButton.alpha = 0
         
-        [captureButton, captureButtonRingView, cancelButton, flipCameraButton, speedButton, beautyButton, filterButton, timerButton, galleryButton, effectsButton, soundsView, timeCounterLabel].forEach { subview in
+        view.addSubview(segmentedProgressView)
+        segmentedProgressView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        segmentedProgressView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        segmentedProgressView.widthAnchor.constraint(equalToConstant: view.frame.width - 18).isActive = true
+        segmentedProgressView.heightAnchor.constraint(equalToConstant: 6).isActive = true
+        segmentedProgressView.translatesAutoresizingMaskIntoConstraints = false
+        
+        [captureButton, captureButtonRingView, cancelButton, flipCameraButton, speedButton, beautyButton, filterButton, timerButton, galleryButton, effectsButton, soundsView, timeCounterLabel, saveButton, discardButton].forEach { subview in
             subview?.layer.zPosition = 1
         }
     }
@@ -96,6 +126,7 @@ class CreatePostViewController: UIViewController {
             do {
                 let inputVideo = try AVCaptureDeviceInput(device: captureVideoDevice)
                 let inputAudio = try AVCaptureDeviceInput(device: captureAudioDevice)
+                currentCameraDevice = captureVideoDevice
                 
                 if captureSession.canAddInput(inputVideo) {
                     captureSession.addInput(inputVideo)
@@ -130,6 +161,8 @@ class CreatePostViewController: UIViewController {
     func getDeviceProsition(position: AVCaptureDevice.Position) -> AVCaptureDevice? {
         AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: position)
     }
+    
+    
     
     // MARK: - @IBAction
     
@@ -173,8 +206,64 @@ class CreatePostViewController: UIViewController {
     }
     
     @IBAction func captureButtonDidTapped(_ sender: Any) {
-        
+        handleDidTapRecord()
     }
+    
+    @IBAction func discardButtonDidTapped(_ sender: Any) {
+        let alertCV = UIAlertController(title: "Discard the last clip?", message: nil, preferredStyle: .alert)
+        
+        let discardAction = UIAlertAction(title: "Discard", style: .default) { _ in
+            self.handleDiscardLastRecordedClip()
+        }
+        
+        let keppAction = UIAlertAction(title: "Keep", style: .cancel) { _ in
+            
+        }
+        
+        alertCV.addAction(discardAction)
+        alertCV.addAction(keppAction)
+        present(alertCV, animated: true)
+    }
+    
+    func handleDiscardLastRecordedClip() {
+        outputUrl = nil
+        thumbnailImage = nil
+        recordedClips.removeLast()
+        handleResetAllVisibilityToIdentity()
+        handleSetNewOutputURLAndThumbailImage()
+        segmentedProgressView.handleRemoveLastSegment()
+        
+        if recordedClips.isEmpty == true {
+            handleResetTimersAndProgressViewToZero()
+        } else if recordedClips.isEmpty == false {
+            handleCalculateDurationLeft()
+        }
+    }
+    
+    func handleSetNewOutputURLAndThumbailImage() {
+        outputUrl = recordedClips.last?.videoUrl
+        let currentUrl: URL? = outputUrl
+        
+        guard let currentUrlUnwrapped = currentUrl else { return }
+        guard let generateThumbailImage = generateVideoThumbnail(withfile: currentUrlUnwrapped) else { return }
+        
+        if currentCameraDevice.position == .front {
+            thumbnailImage = didTakePicture(generateThumbailImage, to: .upMirrored)
+        } else {
+            thumbnailImage = generateThumbailImage
+        }
+    }
+    
+    func handleCalculateDurationLeft() {
+        let timeToDiscard = videoDurationOfLastClip
+        let currentCombineTime = total_RecordedTime_In_Secs
+        let newVideoDuration = currentCombineTime - timeToDiscard
+        
+        total_RecordedTime_In_Secs = newVideoDuration
+        let countDownSec: Int = Int(currentMaxRecordingDuration) - total_RecordedTime_In_Secs / 10
+        timeCounterLabel.text = "\(countDownSec)"
+    }
+    
     
 }
 
@@ -195,6 +284,13 @@ extension CreatePostViewController: AVCaptureFileOutputRecordingDelegate {
                 thumbnailImage = generatedThumbnailImage
             }
         }
+    }
+    
+    func fileOutput(_ output: AVCaptureFileOutput, didStartRecordingTo fileURL: URL, from connections: [AVCaptureConnection]) {
+        let newRecordedClip = VideoClips(videoUrl: fileURL, cameraPosition: currentCameraDevice.position)
+        recordedClips.append(newRecordedClip)
+        startTime()
+        print("DEBUG: Recording clips \(recordedClips.count)")
     }
     
     func didTakePicture(_ picture: UIImage, to orientation: UIImage.Orientation) -> UIImage {
@@ -218,6 +314,159 @@ extension CreatePostViewController: AVCaptureFileOutputRecordingDelegate {
         }
         
         return nil
+    }
+    
+    func handleDidTapRecord() {
+        if movieOutput.isRecording == false {
+            startRecording()
+        } else {
+            stopRecording()
+        }
+    }
+    
+    func startRecording() {
+        if movieOutput.isRecording == false {
+            guard let connection = movieOutput.connection(with: .video) else { return }
+            
+            if connection.isVideoOrientationSupported {
+                connection.preferredVideoStabilizationMode = AVCaptureVideoStabilizationMode.auto
+                let device = activeInput.device
+                
+                if device.isSmoothAutoFocusSupported {
+                    do {
+                        try device.lockForConfiguration()
+                        device.isSmoothAutoFocusEnabled = false
+                        device.unlockForConfiguration()
+                    } catch {
+                        print("DEBUG: Error setting configuration \(error.localizedDescription)")
+                    }
+                }
+                
+                outputUrl = tempUrl()
+                movieOutput.startRecording(to: outputUrl, recordingDelegate: self)
+                handleAnimateRecording()
+            }
+        }
+    }
+    
+    func tempUrl() -> URL? {
+        let directory = NSTemporaryDirectory() as NSString
+        
+        if directory != "" {
+            let path = directory.appendingPathComponent(NSUUID().uuidString + ".mp4")
+            return URL(fileURLWithPath: path)
+        }
+        
+        return nil
+    }
+    
+    func stopRecording() {
+        if movieOutput.isRecording == true {
+            movieOutput.stopRecording()
+            handleAnimateRecording()
+            stopTimer()
+            segmentedProgressView.pauseProgress()
+        }
+    }
+    
+    func handleAnimateRecording() {
+       UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseIn) { [weak self] in
+            guard let self = self else  { return }
+            
+            if self.isRecording == false {
+                self.captureButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+                self.captureButton.layer.cornerRadius = 5
+                self.captureButtonRingView.transform = CGAffineTransform(scaleX: 1.4, y: 1.4)
+                
+                self.saveButton.alpha = 0
+                self.discardButton.alpha = 0
+                
+                [self.galleryButton, self.effectsButton, self.soundsView].forEach { subview in
+                    subview?.isHidden = true
+                }
+                
+//                [self.flipCameraButton, self.speedButton, self.beautyButton, self.filterButton, self.timerButton, self.galleryButton, self.effectsButton, self.soundsView].forEach { subview in
+//                    subview?.isHidden = true
+//                }
+            } else {
+                self.captureButton.transform = CGAffineTransform.identity
+                self.captureButton.layer.cornerRadius = 68/2
+                self.captureButtonRingView.transform = CGAffineTransform.identity
+                
+                self.handleResetAllVisibilityToIdentity()
+            }
+        } completion: { [weak self] onComplete in
+            guard let self = self else  { return }
+            self.isRecording = !self.isRecording
+        }
+
+    }
+    
+    func handleResetAllVisibilityToIdentity() {
+        if recordedClips.isEmpty == true {
+            self.saveButton.alpha = 0
+            self.discardButton.alpha = 0
+            
+            [self.galleryButton, self.effectsButton, self.soundsView].forEach { subview in
+                subview?.isHidden = false
+            }
+        } else {
+            self.saveButton.alpha = 1
+            self.discardButton.alpha = 1
+            
+            [self.galleryButton, self.effectsButton, self.soundsView].forEach { subview in
+                subview?.isHidden = true
+            }
+        }
+    
+    }
+    
+}
+
+// MARK: - Recording Timer
+
+extension CreatePostViewController {
+    
+    func startTime() {
+        videoDurationOfLastClip = 0
+        stopTimer()
+        
+        recordingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { [weak self] _ in
+            self?.timerTick()
+        })
+    }
+    
+    func timerTick() {
+        total_RecordedTime_In_Secs += 1
+        videoDurationOfLastClip += 1
+        
+        let time_limit = currentMaxRecordingDuration * 10
+        
+        if total_RecordedTime_In_Secs == time_limit {
+            handleDidTapRecord()
+        }
+        
+        let startTime = 0
+        let trimmedTime: Int = Int(currentMaxRecordingDuration) - startTime
+        let positiveOrZero = max(total_RecordedTime_In_Secs, 0)
+        let progress = Float(positiveOrZero) / Float(trimmedTime) / 10
+        segmentedProgressView.setProgress(CGFloat(progress))
+        
+        let countDownSec: Int = Int(currentMaxRecordingDuration) - total_RecordedTime_In_Secs / 10
+        timeCounterLabel.text = "\(countDownSec)"
+    }
+    
+    func stopTimer() {
+        recordingTimer?.invalidate()
+    }
+    
+    func handleResetTimersAndProgressViewToZero() {
+        total_RecordedTime_In_Secs = 0
+        total_RecordedTime_In_Minutes = 0
+        videoDurationOfLastClip = 0
+        stopTimer()
+        segmentedProgressView.setProgress(0)
+        timeCounterLabel.text = "\(currentMaxRecordingDuration)"
     }
     
 }

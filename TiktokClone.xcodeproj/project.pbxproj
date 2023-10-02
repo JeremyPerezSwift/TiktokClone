@@ -31,7 +31,9 @@
 		29BFB6AC2AC5483C000262AD /* SignInService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6AB2AC5483C000262AD /* SignInService.swift */; };
 		29BFB6AE2AC56805000262AD /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6AD2AC56805000262AD /* ProfileViewController.swift */; };
 		29BFB6B12AC56C93000262AD /* CreatePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */; };
+		29C79CC72AC81E75001BE0F2 /* VideoClips.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29C79CC62AC81E75001BE0F2 /* VideoClips.swift */; };
 		29E280972AC4086A00738068 /* References.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E280962AC4086A00738068 /* References.swift */; };
+		29E9CCBE2ACAB32700E7DBF3 /* SegmentedProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29E9CCBD2ACAB32700E7DBF3 /* SegmentedProgressView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +55,9 @@
 		29BFB6AB2AC5483C000262AD /* SignInService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInService.swift; sourceTree = "<group>"; };
 		29BFB6AD2AC56805000262AD /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostViewController.swift; sourceTree = "<group>"; };
+		29C79CC62AC81E75001BE0F2 /* VideoClips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoClips.swift; sourceTree = "<group>"; };
 		29E280962AC4086A00738068 /* References.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = References.swift; sourceTree = "<group>"; };
+		29E9CCBD2ACAB32700E7DBF3 /* SegmentedProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentedProgressView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,7 @@
 		29AC57202AB837680045D8B1 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				29E9CCBD2ACAB32700E7DBF3 /* SegmentedProgressView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			children = (
 				29AC57232AB8379C0045D8B1 /* Extensions.swift */,
 				29E280962AC4086A00738068 /* References.swift */,
+				29C79CC62AC81E75001BE0F2 /* VideoClips.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -258,9 +264,11 @@
 				29E280972AC4086A00738068 /* References.swift in Sources */,
 				29AC570B2AB81ABA0045D8B1 /* AppDelegate.swift in Sources */,
 				29BFB6AE2AC56805000262AD /* ProfileViewController.swift in Sources */,
+				29E9CCBE2ACAB32700E7DBF3 /* SegmentedProgressView.swift in Sources */,
 				29AC571F2AB82A3F0045D8B1 /* SignUpViewController.swift in Sources */,
 				29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */,
 				29AC570D2AB81ABA0045D8B1 /* SceneDelegate.swift in Sources */,
+				29C79CC72AC81E75001BE0F2 /* VideoClips.swift in Sources */,
 				29AC06E82ABEDC9400AFCA5E /* StorageService.swift in Sources */,
 				29AC06E32ABED29100AFCA5E /* SignUpViewModel.swift in Sources */,
 			);
