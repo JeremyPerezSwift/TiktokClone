@@ -80,11 +80,17 @@ class CreatePostViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        self.tabBarController?.tabBar.isHidden = false
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+//    }
     
     // MARK: - Helpers
     
@@ -108,7 +114,7 @@ class CreatePostViewController: UIViewController {
         discardButton.alpha = 0
         
         view.addSubview(segmentedProgressView)
-        segmentedProgressView.topAnchor.constraint(equalTo: view.topAnchor, constant: 60).isActive = true
+        segmentedProgressView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 15).isActive = true
         segmentedProgressView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         segmentedProgressView.widthAnchor.constraint(equalToConstant: view.frame.width - 18).isActive = true
         segmentedProgressView.heightAnchor.constraint(equalToConstant: 6).isActive = true
@@ -225,6 +231,29 @@ class CreatePostViewController: UIViewController {
         present(alertCV, animated: true)
     }
     
+    @IBAction func saveButtonDidTapped(_ sender: Any) {
+        let previewCV = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(identifier: "PreviewCaptureViewController") { coder -> PreviewCaptureViewController? in
+            PreviewCaptureViewController(coder: coder, recordingClips: self.recordedClips)
+        }
+        
+        previewCV.viewWillDenitRestartVideoSession = { [weak self] in
+            guard let self = self else { return }
+            
+            if self.setupCaptureSession() {
+                DispatchQueue.global(qos: .background).async {
+                    self.captureSession.startRunning()
+                }
+            }
+        }
+        
+        navigationController?.pushViewController(previewCV, animated: true)
+    }
+    
+}
+
+// MARK: - Helpers Discard
+
+extension CreatePostViewController {
     func handleDiscardLastRecordedClip() {
         outputUrl = nil
         thumbnailImage = nil
@@ -263,8 +292,6 @@ class CreatePostViewController: UIViewController {
         let countDownSec: Int = Int(currentMaxRecordingDuration) - total_RecordedTime_In_Secs / 10
         timeCounterLabel.text = "\(countDownSec)"
     }
-    
-    
 }
 
 // MARK: - AVCaptureMovieFileOutput

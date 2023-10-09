@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29342B132ACBFA180006C87F /* PreviewCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29342B122ACBFA180006C87F /* PreviewCaptureViewController.swift */; };
+		29342B152ACC43450006C87F /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29342B142ACC43450006C87F /* VideoCompositionWriter.swift */; };
+		29A8722C2AD3DF100090374F /* SharePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8722B2AD3DF100090374F /* SharePostViewController.swift */; };
 		29AC06E32ABED29100AFCA5E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */; };
 		29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */; };
 		29AC06E82ABEDC9400AFCA5E /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E72ABEDC9400AFCA5E /* StorageService.swift */; };
@@ -37,6 +40,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29342B122ACBFA180006C87F /* PreviewCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCaptureViewController.swift; sourceTree = "<group>"; };
+		29342B142ACC43450006C87F /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
+		29A8722B2AD3DF100090374F /* SharePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostViewController.swift; sourceTree = "<group>"; };
 		29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
 		29AC06E72ABEDC9400AFCA5E /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
@@ -79,6 +85,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29342B112ACBF9F70006C87F /* CreatePost */ = {
+			isa = PBXGroup;
+			children = (
+				29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */,
+				29342B122ACBFA180006C87F /* PreviewCaptureViewController.swift */,
+				29A8722B2AD3DF100090374F /* SharePostViewController.swift */,
+			);
+			path = CreatePost;
+			sourceTree = "<group>";
+		};
 		29AC06E12ABED26C00AFCA5E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,7 +162,7 @@
 				29AC570E2AB81ABA0045D8B1 /* ViewController.swift */,
 				29BFB6AF2AC56C76000262AD /* Authentification */,
 				29BFB6AD2AC56805000262AD /* ProfileViewController.swift */,
-				29BFB6B02AC56C93000262AD /* CreatePostViewController.swift */,
+				29342B112ACBF9F70006C87F /* CreatePost */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -157,6 +173,7 @@
 				29AC57232AB8379C0045D8B1 /* Extensions.swift */,
 				29E280962AC4086A00738068 /* References.swift */,
 				29C79CC62AC81E75001BE0F2 /* VideoClips.swift */,
+				29342B142ACC43450006C87F /* VideoCompositionWriter.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -258,6 +275,8 @@
 			files = (
 				29BFB6AC2AC5483C000262AD /* SignInService.swift in Sources */,
 				29BFB6B12AC56C93000262AD /* CreatePostViewController.swift in Sources */,
+				29A8722C2AD3DF100090374F /* SharePostViewController.swift in Sources */,
+				29342B152ACC43450006C87F /* VideoCompositionWriter.swift in Sources */,
 				29AC57242AB8379C0045D8B1 /* Extensions.swift in Sources */,
 				29AC570F2AB81ABA0045D8B1 /* ViewController.swift in Sources */,
 				29AC57262AB83DE30045D8B1 /* SignInViewController.swift in Sources */,
@@ -266,6 +285,7 @@
 				29BFB6AE2AC56805000262AD /* ProfileViewController.swift in Sources */,
 				29E9CCBE2ACAB32700E7DBF3 /* SegmentedProgressView.swift in Sources */,
 				29AC571F2AB82A3F0045D8B1 /* SignUpViewController.swift in Sources */,
+				29342B132ACBFA180006C87F /* PreviewCaptureViewController.swift in Sources */,
 				29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */,
 				29AC570D2AB81ABA0045D8B1 /* SceneDelegate.swift in Sources */,
 				29C79CC72AC81E75001BE0F2 /* VideoClips.swift in Sources */,
