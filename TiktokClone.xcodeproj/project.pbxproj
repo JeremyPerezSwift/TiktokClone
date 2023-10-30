@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		29342B132ACBFA180006C87F /* PreviewCaptureViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29342B122ACBFA180006C87F /* PreviewCaptureViewController.swift */; };
 		29342B152ACC43450006C87F /* VideoCompositionWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29342B142ACC43450006C87F /* VideoCompositionWriter.swift */; };
+		296B1BE72AE658CA00B35345 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B1BE62AE658CA00B35345 /* PostService.swift */; };
+		296B1BE92AE6BF8300B35345 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B1BE82AE6BF8300B35345 /* HomeViewController.swift */; };
+		296B1BEC2AE6BFC400B35345 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296B1BEB2AE6BFC400B35345 /* HomeCollectionViewCell.swift */; };
 		29A8722C2AD3DF100090374F /* SharePostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29A8722B2AD3DF100090374F /* SharePostViewController.swift */; };
 		29AC06E32ABED29100AFCA5E /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */; };
 		29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */; };
@@ -42,6 +45,9 @@
 /* Begin PBXFileReference section */
 		29342B122ACBFA180006C87F /* PreviewCaptureViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCaptureViewController.swift; sourceTree = "<group>"; };
 		29342B142ACC43450006C87F /* VideoCompositionWriter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCompositionWriter.swift; sourceTree = "<group>"; };
+		296B1BE62AE658CA00B35345 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
+		296B1BE82AE6BF8300B35345 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		296B1BEB2AE6BFC400B35345 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		29A8722B2AD3DF100090374F /* SharePostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePostViewController.swift; sourceTree = "<group>"; };
 		29AC06E22ABED29100AFCA5E /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpService.swift; sourceTree = "<group>"; };
@@ -109,6 +115,7 @@
 				29AC06E52ABEDBBD00AFCA5E /* SignUpService.swift */,
 				29BFB6AB2AC5483C000262AD /* SignInService.swift */,
 				29AC06E72ABEDC9400AFCA5E /* StorageService.swift */,
+				296B1BE62AE658CA00B35345 /* PostService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -152,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				29E9CCBD2ACAB32700E7DBF3 /* SegmentedProgressView.swift */,
+				296B1BEB2AE6BFC400B35345 /* HomeCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -161,6 +169,7 @@
 			children = (
 				29AC570E2AB81ABA0045D8B1 /* ViewController.swift */,
 				29BFB6AF2AC56C76000262AD /* Authentification */,
+				296B1BE82AE6BF8300B35345 /* HomeViewController.swift */,
 				29BFB6AD2AC56805000262AD /* ProfileViewController.swift */,
 				29342B112ACBF9F70006C87F /* CreatePost */,
 			);
@@ -287,6 +296,9 @@
 				29AC571F2AB82A3F0045D8B1 /* SignUpViewController.swift in Sources */,
 				29342B132ACBFA180006C87F /* PreviewCaptureViewController.swift in Sources */,
 				29AC06E62ABEDBBD00AFCA5E /* SignUpService.swift in Sources */,
+				296B1BEC2AE6BFC400B35345 /* HomeCollectionViewCell.swift in Sources */,
+				296B1BE72AE658CA00B35345 /* PostService.swift in Sources */,
+				296B1BE92AE6BF8300B35345 /* HomeViewController.swift in Sources */,
 				29AC570D2AB81ABA0045D8B1 /* SceneDelegate.swift in Sources */,
 				29C79CC72AC81E75001BE0F2 /* VideoClips.swift in Sources */,
 				29AC06E82ABEDC9400AFCA5E /* StorageService.swift in Sources */,
